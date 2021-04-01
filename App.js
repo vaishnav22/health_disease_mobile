@@ -9,6 +9,8 @@ import AccountScreen from './src/screens/AccountScreen'
 import DiseaseScreen from './src/screens/DiseaseScreen'
 import NewsScreen from './src/screens/NewsScreen'
 
+import {Provider as AuthProvider } from './src/context/AuthContext'
+
 const switchNavigator = createSwitchNavigator({
   loginFlow: createStackNavigator({
     Signin: SigninScreen,
@@ -21,4 +23,12 @@ const switchNavigator = createSwitchNavigator({
   })
 })
 
-export default createAppContainer(switchNavigator)
+const App =  createAppContainer(switchNavigator)
+
+export default () => {
+  return (
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  )
+}

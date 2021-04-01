@@ -17,8 +17,12 @@ import Spacer from '../components/Spacer'
 
 const SigninScreen = ({navigation}) => {
 
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const login = () => {
+      console.log(email, password);
+    }
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
@@ -55,13 +59,13 @@ const SigninScreen = ({navigation}) => {
     
           {Platform.OS === 'android' ? (
             <View>
-              <SocialButton
+              {/* <SocialButton
                 buttonTitle="Sign In with Facebook"
                 btnType="facebook"
                 color="#4867aa"
                 backgroundColor="#e6eaf4"
                 
-              />
+              /> */}
     
               <SocialButton
                 buttonTitle="Sign In with Google"
@@ -103,7 +107,6 @@ const styles = StyleSheet.create({
       resizeMode: 'cover',
     },
     text: {
-      fontFamily: 'Kufam-SemiBoldItalic',
       fontSize: 28,
       marginVertical: 13,
       color: '#051d5f',
@@ -118,7 +121,6 @@ const styles = StyleSheet.create({
       fontSize: 18,
       fontWeight: '500',
       color: '#2e64e5',
-      fontFamily: 'Lato-Regular',
     },
 });
 
