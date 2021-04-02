@@ -29,20 +29,21 @@ const styles = StyleSheet.create({
         width: '100%',
         height: windowHeight/15,
         borderColor: '#ccc',
-        borderRadius: 3,
+        borderRadius: 18,
         borderWidth: 1,
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#fff'
     },
     iconStyle: {
-        padding: 10,
+        padding: 15,
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
         borderRightColor:'#ccc',
         borderWidth: 1,
-        width: 50
+        width: 50,
+        marginHorizontal: 20
     },
     input: {
         padding: 10,
@@ -50,7 +51,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#333',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        borderRadius:30
     },
     inputField: {
         padding: 10,
@@ -59,7 +61,7 @@ const styles = StyleSheet.create({
         width: windowWidth / 1.5,
         height: windowHeight/15,
         fontSize: 16,
-        borderRadius: 8,
+        borderRadius: 20,
         borderWidth: 1
     }
 })
