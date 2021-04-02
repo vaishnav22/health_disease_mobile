@@ -10,6 +10,7 @@ import DiseaseScreen from './src/screens/DiseaseScreen'
 import NewsScreen from './src/screens/NewsScreen'
 
 import {Provider as AuthProvider } from './src/context/AuthContext'
+import {setNavigator} from './src/navigationRef'
 
 const switchNavigator = createSwitchNavigator({
   loginFlow: createStackNavigator({
@@ -28,7 +29,7 @@ const App =  createAppContainer(switchNavigator)
 export default () => {
   return (
     <AuthProvider>
-      <App />
+      <App ref={(navigator) => {setNavigator(navigator)}} />
     </AuthProvider>
   )
 }

@@ -15,14 +15,15 @@ import FormButton from '../components/FormButton'
 import SocialButton from '../components/SocialButton'
 import Spacer from '../components/Spacer'
 
+import { Context as AuthContext} from '../context/AuthContext'
+
 const SigninScreen = ({navigation}) => {
 
+    const {state, signin} = useContext(AuthContext)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const login = () => {
-      console.log(email, password);
-    }
+    console.log(email,password);
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
@@ -49,10 +50,10 @@ const SigninScreen = ({navigation}) => {
     
           <FormButton
             buttonTitle="Sign In"
-            onPress={() => login(email, password)}
+            onPress={() => signin({email, password})}
           />
-    
-        <Spacer />
+        {state.errorMessage ? <Text style={styles.error}>{state.errorMessage}</Text> : null}
+        {/* <Spacer /> */}
           {/* <TouchableOpacity style={styles.forgotButton} onPress={() => {}}>
             <Text style={styles.navButtonText}>Forgot Password?</Text>
           </TouchableOpacity> */}
@@ -121,6 +122,12 @@ const styles = StyleSheet.create({
       fontSize: 18,
       fontWeight: '500',
       color: '#2e64e5',
+    },
+    error: {
+      fontSize: 18,
+      color: 'red',
+      marginVertical: 15,
+      marginLeft: 13
     },
 });
 

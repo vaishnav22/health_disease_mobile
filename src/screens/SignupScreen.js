@@ -9,7 +9,6 @@ import {
     ScrollView
 } from 'react-native';
 import { Context as AuthContext} from '../context/AuthContext'
-import {Font} from 'expo'
 
 import FormInput from '../components/FormInput'
 import FormButton from '../components/FormButton'
@@ -22,7 +21,7 @@ const SignupScreen = ({navigation}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    
+    console.log(state);
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
@@ -51,7 +50,9 @@ const SignupScreen = ({navigation}) => {
             buttonTitle="Sign Up"
             onPress={() => signup({email, password})}
           />
-    
+
+          {state.errorMessage ? <Text style={styles.error}>{state.errorMessage}</Text> : null}
+          {state.loading ? <Text style={styles.loading}>{state.loading}</Text> : null}
         <Spacer />
           {/* <TouchableOpacity style={styles.forgotButton} onPress={() => {}}>
             <Text style={styles.navButtonText}>Forgot Password?</Text>
@@ -115,13 +116,25 @@ const styles = StyleSheet.create({
       marginTop: 15,
     },
     forgotButton: {
-      marginVertical: 35,
+      marginTop: 1
     },
     navButtonText: {
       fontSize: 18,
       fontWeight: '500',
       color: '#2e64e5',
     },
+    error: {
+      fontSize: 18,
+      color: 'red',
+      marginVertical: 15,
+      marginLeft: 13
+    },
+    loading: {
+      fontSize: 20,
+      color: 'blue',
+      marginVertical: 15,
+      marginLeft: 13
+    }
 });
 
 export default SignupScreen;
