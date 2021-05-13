@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-community/async-storage";
 import createDataContext from './createDataContext'
-import diseaseAPI from '../api/disease'
+import userAPI from '../api/user'
 import { navigate } from '../navigationRef'
 
 const authReducer = (state, action) => {
@@ -27,7 +27,7 @@ const clearErrorMessage = dispatch = () => {
 const signup = (dispatch) => {
     return async ({email,password}) => {
         try{
-            const response = await diseaseAPI.post('/signup',{email,password})
+            const response = await userAPI.post('/signup',{email,password})
             await AsyncStorage.setItem('token',response.data.token)
             dispatch({
                 type: 'loading',
@@ -49,7 +49,7 @@ const signin = (dispatch) => {
     return async ({email,password}) => {
         try{
             console.log('hello');
-            const response = await diseaseAPI.post('/signin',{email,password})
+            const response = await userAPI.post('/signin',{email,password})
             console.log(response.data)
             await AsyncStorage.setItem('token',response.data.token)
             dispatch({
