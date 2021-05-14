@@ -63,6 +63,7 @@ state = {
             <FlatList
             showsVerticalScrollIndicator={false}
               data={this.state.news}
+              keyExtractor={key => key}
               renderItem={({item}) => {
                 return (
                   <TouchableWithoutFeedback onPress={() => Linking.openURL(item.url)}>
