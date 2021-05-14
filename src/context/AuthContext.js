@@ -1,7 +1,9 @@
 import AsyncStorage from "@react-native-community/async-storage";
 import createDataContext from './createDataContext'
 import userAPI from '../api/user'
+// import diseaseAPI from '../api/user'
 import { navigate } from '../navigationRef'
+import axios from "axios";
 
 const authReducer = (state, action) => {
     switch(action.type){
@@ -15,6 +17,8 @@ const authReducer = (state, action) => {
             return {...state, loading: action.payload}
         case 'clear_error_message':
             return {...state,errorMessage: ''}
+        case 'prediction':
+            return {...state, prediction: action.payload}
         default:
             return state
     }
@@ -70,8 +74,30 @@ const signout = (dispatch) => {
     }
 }
 
+const predict = (dispatch) => {
+    return async(symptom1, symptom2, symptom3, symptom4) => {
+        try{
+            let input = [symptom1, symptom2, symptom3, symptom4]
+
+            const response = await axios.post('https://health-desease-prediction.herokuapp.com/predict', {"input": input},{
+                headers: {
+                    'content-type': 'application/json'
+                }
+            })
+            dispatch({
+                type: "prediction",
+                payload: response.data.Disease
+            })
+            console.log(response.data.Disease)
+        }
+        catch(e){
+            console.log(e)
+        }
+    }
+}
+
 export const { Context, Provider} = createDataContext(
     authReducer,
-    {signin,signout,signup},
+    {signin,signout,signup,predict},
     {token: null, errorMessage: '',loading: ''}
 )
