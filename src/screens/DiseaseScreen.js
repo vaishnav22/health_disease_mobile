@@ -6,7 +6,8 @@ import {
     Image,
     Platform,
     StyleSheet,
-    ScrollView
+    ScrollView,
+    ActivityIndicator
 } from 'react-native';
 import {Font} from 'expo'
 import {Picker} from '@react-native-picker/picker'
@@ -75,17 +76,25 @@ const DiseaseScreen = ({navigation}) => {
               ))}
           </Picker>
           </View>
+          
+          
 
           <FormButton
             buttonTitle="Predict"
             onPress={() => predict(symptom1, symptom2, symptom3, symptom4,symptom5)}
           />
 
+          <View>
+            <Text style={styles.FollowingText}>You may have the following disease.</Text>
+          </View>
           <View> 
-            <Text style={styles.predictionText}>{state.prediction}</Text>
+          {state.loading ? <ActivityIndicator size="large" color="#00ff00" /> : null}
+          {state.prediction ? <Text style={styles.predictionText}>{state.prediction}</Text> : null}
+          
           </View>
             {state.errorMessage ? <Text style={styles.error}>{state.errorMessage}</Text> : null}
-        
+          
+
         </ScrollView>
     )
 }
@@ -143,9 +152,15 @@ const styles = StyleSheet.create({
         borderRadius: 10
     },
     predictionText : {
-      fontSize: 22,
-      marginTop: 20
+      fontSize: 24,
+      marginTop: 16,
+      fontWeight: 'bold'
 
+    },
+    FollowingText: {
+      fontSize: 22,
+      marginTop: 15,
+      textAlign: 'center'
     }
 });
 export default DiseaseScreen;

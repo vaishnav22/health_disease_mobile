@@ -77,19 +77,32 @@ const signout = (dispatch) => {
 const predict = (dispatch) => {
     return async(symptom1, symptom2, symptom3, symptom4,symptom5) => {
         try{
-            
-            let input = [symptom1, symptom2, symptom3, symptom4,symptom5]
-
-            const response = await axios.post('https://health-desease-prediction.herokuapp.com/predict', {"input": input},{
-                headers: {
-                    'content-type': 'application/json'
-                }
-            })
             dispatch({
-                type: "prediction",
-                payload: response.data.Disease
+                type: 'loading',
+                payload: 'Please wait creating your account!'
             })
-            console.log(response.data.Disease)
+            console.log("getting data")
+            if(symptom1 && symptom2 && symptom3 && symptom4 && symptom5){
+                let input = [symptom1, symptom2, symptom3, symptom4,symptom5]
+
+                const response = await axios.post('https://health-desease-prediction.herokuapp.com/predict', {"input": input},{
+                    headers: {
+                        'content-type': 'application/json'
+                    }
+                })
+                dispatch({
+                    type: "prediction",
+                    payload: response.data.Disease
+                })
+                dispatch({
+                    type: "loading",
+                    payload: null
+                })
+                console.log(response.data.Disease)
+            } else {
+                dispatch({type: 'add_error', payload: 'All symptoms are mandatory!'})
+            }
+            
         }
         catch(e){
             console.log(e)
