@@ -75,9 +75,10 @@ const signout = (dispatch) => {
 }
 
 const predict = (dispatch) => {
-    return async(symptom1, symptom2, symptom3, symptom4) => {
+    return async(symptom1, symptom2, symptom3, symptom4,symptom5) => {
         try{
-            let input = [symptom1, symptom2, symptom3, symptom4]
+            
+            let input = [symptom1, symptom2, symptom3, symptom4,symptom5]
 
             const response = await axios.post('https://health-desease-prediction.herokuapp.com/predict', {"input": input},{
                 headers: {
