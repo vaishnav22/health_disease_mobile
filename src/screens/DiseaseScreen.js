@@ -119,6 +119,7 @@ const styles = StyleSheet.create({
       marginTop: 20,
       color: '#051d5f',
       textAlign: 'center',
+      fontFamily: 'sans-serif-medium'
     },
     navButton: {
       marginTop: 15,
@@ -144,6 +145,7 @@ const styles = StyleSheet.create({
         borderColor: "black",
         borderWidth: 1,
         fontSize: 18,
+        fontFamily: 'sans-serif-medium'
     },
     pickerView: {
       marginTop: 10,
@@ -153,17 +155,19 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
         borderWidth: 1,
         borderRadius: 10,
+        fontFamily: 'sans-serif-medium'
     },
     predictionText : {
       fontSize: 24,
       marginTop: 16,
       fontWeight: 'bold',
-
+      fontFamily: 'sans-serif-medium'
     },
     FollowingText: {
       fontSize: 22,
       marginTop: 15,
       textAlign: 'center',
+      fontFamily: 'sans-serif-medium'
     }
 });
 export default DiseaseScreen;

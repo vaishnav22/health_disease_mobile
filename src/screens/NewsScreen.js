@@ -89,7 +89,7 @@ state = {
 
 NewsScreen['navigationOptions'] = screenProps => ({
   title: 'News',
-  tabBarIcon: <FontAwesome name="newspaper-o" size={24} color="black" />
+  tabBarIcon: <FontAwesome name="newspaper-o" size={24} color="#194350" />
 })
 
 const styles = StyleSheet.create({

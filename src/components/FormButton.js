@@ -22,11 +22,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 30,
+        fontFamily: 'sans-serif-medium'
     },
     buttonText: {
         fontSize: 20,
         fontWeight: 'bold',
         color: '#ffffff',
+        fontFamily: 'sans-serif-medium'
     }
 })
 

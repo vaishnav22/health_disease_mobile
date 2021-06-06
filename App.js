@@ -14,18 +14,27 @@ import ResolveAuthScreen from './src/screens/ResolveAuthScreen'
 import {Provider as AuthProvider } from './src/context/AuthContext'
 import {setNavigator} from './src/navigationRef'
 
+const mainFlowNavigator = createBottomTabNavigator({
+  Disease: DiseaseScreen,
+  News: NewsScreen,
+  Account: AccountScreen
+})
+
 const switchNavigator = createSwitchNavigator({
   ResolveAuth: ResolveAuthScreen,
   loginFlow: createStackNavigator({
     Signin: SigninScreen,
     Signup: SignupScreen
   }), 
-  mainFlow: createBottomTabNavigator({
-    Disease: DiseaseScreen,
-    News: NewsScreen,
-    Account: AccountScreen
-  })
+  mainFlow: mainFlowNavigator
 })
+
+// mainFlowNavigator['navigationOptions'] = screenProps => ({
+//   tabStyle: {
+//     backgroundColor: 'blue'
+//   }
+// })
+
 
 const App =  createAppContainer(switchNavigator)
 
