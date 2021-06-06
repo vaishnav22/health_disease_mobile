@@ -1,11 +1,15 @@
-import React,{useContext} from 'react'
+import React,{useContext, useEffect} from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import FormButton from '../components/FormButton'
+import { FontAwesome } from '@expo/vector-icons';
 
 import { Context as AuthContext} from '../context/AuthContext'
 
-const AccountScreen = () => {
+const AccountScreen = ({navigation}) => {
     const {signout} = useContext(AuthContext)
+
+    
+
     return (
         <View style={styles.text}>
             <Text>Hello and welcome to Account Screen</Text>
@@ -16,6 +20,10 @@ const AccountScreen = () => {
         </View>
     )
 }
+AccountScreen['navigationOptions'] = screenProps => ({
+    title: 'Profile',
+    tabBarIcon: <FontAwesome name="user" size={24} color="skyblue" />,
+})
 
 const styles = StyleSheet.create({
     text: {
