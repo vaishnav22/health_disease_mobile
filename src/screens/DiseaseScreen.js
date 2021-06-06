@@ -88,7 +88,7 @@ const DiseaseScreen = ({navigation}) => {
             <Text style={styles.FollowingText}>You may have the following disease.</Text>
           </View>
           <View> 
-          {state.loading ? <ActivityIndicator size="large" color="#00ff00" /> : null}
+          {state.loading ? <ActivityIndicator style={{marginTop: 12}} size="large" color="#00ff00" /> : null}
           {state.prediction ? <Text style={styles.predictionText}>{state.prediction}</Text> : null}
           
           </View>

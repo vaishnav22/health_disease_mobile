@@ -31,18 +31,22 @@ const clearErrorMessage = dispatch = () => {
 const signup = (dispatch) => {
     return async ({email,password}) => {
         try{
-            const response = await userAPI.post('/signup',{email,password})
-            await AsyncStorage.setItem('token',response.data.token)
             dispatch({
                 type: 'loading',
                 payload: 'Please wait creating your account!'
             })
+            const response = await userAPI.post('/signup',{email,password})
+            await AsyncStorage.setItem('token',response.data.token)
             dispatch({
                 type: 'signin',
                 payload: response.data.token
             })
             navigate('mainFlow')
             console.log(response.data)
+            dispatch({
+                type: 'loading',
+                payload: null
+            })
         } catch(e){
             dispatch({type: 'add_error', payload: 'Email aldredy in use'})
         }
@@ -52,6 +56,10 @@ const signup = (dispatch) => {
 const signin = (dispatch) => {
     return async ({email,password}) => {
         try{
+            dispatch({
+                type: 'loading',
+                payload: 'Please wait creating your account!'
+            })
             console.log('hello');
             const response = await userAPI.post('/signin',{email,password})
             console.log(response.data)
@@ -68,6 +76,15 @@ const signin = (dispatch) => {
     }
 }
 
+const tryLocalSignin = dispath => async () => {
+    const token = await AsyncStorage.getItem('token')
+    if (token){
+        dispath({type: 'signin',payload: token})
+        navigate('mainFlow')
+    } else{
+        navigate('loginFlow')
+    }
+}
 const signout = (dispatch) => {
     return ({}) => {
 
@@ -112,6 +129,6 @@ const predict = (dispatch) => {
 
 export const { Context, Provider} = createDataContext(
     authReducer,
-    {signin,signout,signup,predict},
+    {signin,signout,signup,predict,tryLocalSignin},
     {token: null, errorMessage: '',loading: ''}
 )

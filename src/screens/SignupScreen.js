@@ -6,7 +6,8 @@ import {
     Image,
     Platform,
     StyleSheet,
-    ScrollView
+    ScrollView,
+    ActivityIndicator
 } from 'react-native';
 import { Context as AuthContext} from '../context/AuthContext'
 
@@ -52,7 +53,7 @@ const SignupScreen = ({navigation}) => {
           />
 
           {state.errorMessage ? <Text style={styles.error}>{state.errorMessage}</Text> : null}
-          {state.loading ? <Text style={styles.loading}>{state.loading}</Text> : null}
+          {state.loading ? <ActivityIndicator size="large" color="#00ff00" /> : null}
         <Spacer />
           {/* <TouchableOpacity style={styles.forgotButton} onPress={() => {}}>
             <Text style={styles.navButtonText}>Forgot Password?</Text>

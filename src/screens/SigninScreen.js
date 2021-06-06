@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {
     View,
     Text,
@@ -6,7 +6,8 @@ import {
     Image,
     Platform,
     StyleSheet,
-    ScrollView
+    ScrollView,
+    ActivityIndicator
 } from 'react-native';
 import {Font} from 'expo'
 
@@ -19,11 +20,15 @@ import { Context as AuthContext} from '../context/AuthContext'
 
 const SigninScreen = ({navigation}) => {
 
-    const {state, signin} = useContext(AuthContext)
+    const {state, signin, tryLocalSignin} = useContext(AuthContext)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     console.log(email,password);
+
+    useEffect(() => {
+      tryLocalSignin();
+    }, [])
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
@@ -85,6 +90,8 @@ const SigninScreen = ({navigation}) => {
               Don't have an acount? Create here
             </Text>
           </TouchableOpacity>
+
+          {state.loading ? <ActivityIndicator style={{marginTop: 12}} size="large" color="#00ff00" /> : null}
         </ScrollView>
       );
 }
