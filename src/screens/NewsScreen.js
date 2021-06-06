@@ -2,6 +2,7 @@ import React from 'react'
 import { View, StyleSheet, Text, ActivityIndicator,FlatList, Dimensions,Image, TouchableWithoutFeedback, Linking, Share, ScrollView } from 'react-native'
 const { width, height } =  Dimensions.get('window')
 import * as Font from 'expo-font'
+import { FontAwesome } from '@expo/vector-icons';
 
 
 
@@ -86,6 +87,10 @@ state = {
   }
 }
 
+NewsScreen['navigationOptions'] = screenProps => ({
+  title: 'News',
+  tabBarIcon: <FontAwesome name="newspaper-o" size={24} color="black" />
+})
 
 const styles = StyleSheet.create({
   container : {

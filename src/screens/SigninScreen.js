@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext, useState} from 'react';
 import {
     View,
     Text,
@@ -20,15 +20,13 @@ import { Context as AuthContext} from '../context/AuthContext'
 
 const SigninScreen = ({navigation}) => {
 
-    const {state, signin, tryLocalSignin} = useContext(AuthContext)
+    const {state, signin} = useContext(AuthContext)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     console.log(email,password);
 
-    useEffect(() => {
-      tryLocalSignin();
-    }, [])
+    
 
     return (
         <ScrollView contentContainerStyle={styles.container}>

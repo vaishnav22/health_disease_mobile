@@ -11,6 +11,8 @@ import {
 } from 'react-native';
 import {Font} from 'expo'
 import {Picker} from '@react-native-picker/picker'
+import { FontAwesome5 } from '@expo/vector-icons';
+
 
 import FormInput from '../components/FormInput'
 import FormButton from '../components/FormButton'
@@ -98,6 +100,11 @@ const DiseaseScreen = ({navigation}) => {
         </ScrollView>
     )
 }
+
+DiseaseScreen['navigationOptions'] = screenProps => ({
+  title: 'Disease',
+  tabBarIcon: <FontAwesome5 name="clinic-medical" size={24} color="red" />
+})
 
 const styles = StyleSheet.create({
     container: {

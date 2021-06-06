@@ -9,12 +9,13 @@ import SigninScreen from './src/screens/SigninScreen'
 import AccountScreen from './src/screens/AccountScreen'
 import DiseaseScreen from './src/screens/DiseaseScreen'
 import NewsScreen from './src/screens/NewsScreen'
+import ResolveAuthScreen from './src/screens/ResolveAuthScreen'
 
 import {Provider as AuthProvider } from './src/context/AuthContext'
 import {setNavigator} from './src/navigationRef'
 
-
 const switchNavigator = createSwitchNavigator({
+  ResolveAuth: ResolveAuthScreen,
   loginFlow: createStackNavigator({
     Signin: SigninScreen,
     Signup: SignupScreen
