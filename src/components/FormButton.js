@@ -1,8 +1,10 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 import {windowHeight, windowWidth} from '../../utils/Dimentions'
+import * as Font from 'expo-font'
 
 const FormButton = ({buttonTitle, ...rest}) => {
+
     return (
         <TouchableOpacity style={styles.buttonContainer} {...rest}>
             <Text style={styles.buttonText} >{buttonTitle}</Text>
