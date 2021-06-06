@@ -1,0 +1,7 @@
+https://stackoverflow.com/questions/32393134/getting-results-of-nearby-places-from-users-location-using-google-maps-api-in-a
+
+https://developers.google.com/maps/documentation/places/web-service/overview
+
+{state.loading ? <ActivityIndicator size="large" color="#00ff00" /> : null}
+
+<Text style={styles.predictionText}>{state.prediction}</Text>

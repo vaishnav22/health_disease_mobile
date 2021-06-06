@@ -31,18 +31,22 @@ const clearErrorMessage = dispatch = () => {
 const signup = (dispatch) => {
     return async ({email,password}) => {
         try{
-            const response = await userAPI.post('/signup',{email,password})
-            await AsyncStorage.setItem('token',response.data.token)
             dispatch({
                 type: 'loading',
                 payload: 'Please wait creating your account!'
             })
+            const response = await userAPI.post('/signup',{email,password})
+            await AsyncStorage.setItem('token',response.data.token)
             dispatch({
                 type: 'signin',
                 payload: response.data.token
             })
             navigate('mainFlow')
             console.log(response.data)
+            dispatch({
+                type: 'loading',
+                payload: null
+            })
         } catch(e){
             dispatch({type: 'add_error', payload: 'Email aldredy in use'})
         }
@@ -52,6 +56,10 @@ const signup = (dispatch) => {
 const signin = (dispatch) => {
     return async ({email,password}) => {
         try{
+            dispatch({
+                type: 'loading',
+                payload: 'Please wait creating your account!'
+            })
             console.log('hello');
             const response = await userAPI.post('/signin',{email,password})
             console.log(response.data)
@@ -68,6 +76,15 @@ const signin = (dispatch) => {
     }
 }
 
+const tryLocalSignin = dispath => async () => {
+    const token = await AsyncStorage.getItem('token')
+    if (token){
+        dispath({type: 'signin',payload: token})
+        navigate('mainFlow')
+    } else{
+        navigate('loginFlow')
+    }
+}
 const signout = (dispatch) => {
     return ({}) => {
 
@@ -75,20 +92,34 @@ const signout = (dispatch) => {
 }
 
 const predict = (dispatch) => {
-    return async(symptom1, symptom2, symptom3, symptom4) => {
+    return async(symptom1, symptom2, symptom3, symptom4,symptom5) => {
         try{
-            let input = [symptom1, symptom2, symptom3, symptom4]
-
-            const response = await axios.post('https://health-desease-prediction.herokuapp.com/predict', {"input": input},{
-                headers: {
-                    'content-type': 'application/json'
-                }
-            })
             dispatch({
-                type: "prediction",
-                payload: response.data.Disease
+                type: 'loading',
+                payload: 'Please wait creating your account!'
             })
-            console.log(response.data.Disease)
+            console.log("getting data")
+            if(symptom1 && symptom2 && symptom3 && symptom4 && symptom5){
+                let input = [symptom1, symptom2, symptom3, symptom4,symptom5]
+
+                const response = await axios.post('https://health-desease-prediction.herokuapp.com/predict', {"input": input},{
+                    headers: {
+                        'content-type': 'application/json'
+                    }
+                })
+                dispatch({
+                    type: "prediction",
+                    payload: response.data.Disease
+                })
+                dispatch({
+                    type: "loading",
+                    payload: null
+                })
+                console.log(response.data.Disease)
+            } else {
+                dispatch({type: 'add_error', payload: 'All symptoms are mandatory!'})
+            }
+            
         }
         catch(e){
             console.log(e)
@@ -98,6 +129,6 @@ const predict = (dispatch) => {
 
 export const { Context, Provider} = createDataContext(
     authReducer,
-    {signin,signout,signup,predict},
+    {signin,signout,signup,predict,tryLocalSignin},
     {token: null, errorMessage: '',loading: ''}
 )
