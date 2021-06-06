@@ -19,6 +19,8 @@ const authReducer = (state, action) => {
             return {...state,errorMessage: ''}
         case 'prediction':
             return {...state, prediction: action.payload}
+        case 'signout':
+            return {token: null, errorMessage:''}
         default:
             return state
     }
@@ -85,10 +87,10 @@ const tryLocalSignin = dispath => async () => {
         navigate('loginFlow')
     }
 }
-const signout = (dispatch) => {
-    return ({}) => {
-
-    }
+const signout = dispatch => async () => {
+    await AsyncStorage.removeItem('token')
+    dispatch({type: 'signout'})
+    navigate('loginFlow')
 }
 
 const predict = (dispatch) => {
