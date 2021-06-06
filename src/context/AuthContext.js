@@ -21,6 +21,8 @@ const authReducer = (state, action) => {
             return {...state, prediction: action.payload}
         case 'signout':
             return {token: null, errorMessage:''}
+        case 'user_data':
+            return {...state,errorMessage:'',user_data: action.payload}
         default:
             return state
     }
@@ -129,8 +131,15 @@ const predict = (dispatch) => {
     }
 }
 
+const get_user = dispath => async () => {
+    const token = await AsyncStorage.getItem('token')
+    console.log('token',token)
+    const response = await userAPI.get('/get_data?token='+token)
+    dispath({type: 'user_data',payload: response.data.user.email})
+    console.log(response.data)
+}
 export const { Context, Provider} = createDataContext(
     authReducer,
-    {signin,signout,signup,predict,tryLocalSignin},
+    {signin,signout,signup,predict,tryLocalSignin,get_user},
     {token: null, errorMessage: '',loading: ''}
 )

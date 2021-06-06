@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {View, SafeAreaView, StyleSheet} from 'react-native';
 import {
   Avatar,
@@ -15,8 +15,17 @@ import { Context as AuthContext} from '../context/AuthContext'
 
 
 const AccountScreen = ({navigation}) => {
+    const {state,signout,get_user} = useContext(AuthContext)
 
-    const {signout} = useContext(AuthContext)
+    useEffect(() => {
+      get_user()
+    },[])
+
+    // if(state){
+    //   const user_name = state.user_data.split('@')
+    //   console.log(user_name[0])
+    // }
+
   return (
     <SafeAreaView style={styles.container}>
 
@@ -30,26 +39,17 @@ const AccountScreen = ({navigation}) => {
           />
           <View style={{marginLeft: 20}}>
             <Title style={[styles.title, {
-              marginTop:15,
+              marginTop:20,
               marginBottom: 5,
-            }]}>John Doe</Title>
-            <Caption style={styles.caption}>@j_doe</Caption>
+            }]}>vaisnav</Title>
           </View>
         </View>
       </View>
 
       <View style={styles.userInfoSection}>
         <View style={styles.row}>
-          <Icon name="map-marker-radius" color="#777777" size={20}/>
-          <Text style={{color:"#777777", marginLeft: 20}}>Kolkata, India</Text>
-        </View>
-        <View style={styles.row}>
-          <Icon name="phone" color="#777777" size={20}/>
-          <Text style={{color:"#777777", marginLeft: 20}}>+91-900000009</Text>
-        </View>
-        <View style={styles.row}>
           <Icon name="email" color="#777777" size={20}/>
-          <Text style={{color:"#777777", marginLeft: 20}}>john_doe@email.com</Text>
+          <Text style={{color:"#777777", marginLeft: 20}}>abc</Text>
         </View>
       </View>
 
