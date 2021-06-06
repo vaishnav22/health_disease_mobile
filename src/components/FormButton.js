@@ -1,8 +1,10 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 import {windowHeight, windowWidth} from '../../utils/Dimentions'
+import * as Font from 'expo-font'
 
 const FormButton = ({buttonTitle, ...rest}) => {
+
     return (
         <TouchableOpacity style={styles.buttonContainer} {...rest}>
             <Text style={styles.buttonText} >{buttonTitle}</Text>
@@ -20,11 +22,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 30,
+        fontFamily: 'sans-serif-medium'
     },
     buttonText: {
         fontSize: 20,
         fontWeight: 'bold',
         color: '#ffffff',
+        fontFamily: 'sans-serif-medium'
     }
 })
 

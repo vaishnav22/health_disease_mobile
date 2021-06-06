@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        fontFamily: 'sans-serif-medium'
     },
     iconStyle: {
         padding: 15,
@@ -52,7 +53,8 @@ const styles = StyleSheet.create({
         color: '#333',
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius:30
+        borderRadius:30,
+        fontFamily: 'sans-serif-medium'
     },
     inputField: {
         padding: 10,
@@ -62,7 +64,8 @@ const styles = StyleSheet.create({
         height: windowHeight/15,
         fontSize: 16,
         borderRadius: 20,
-        borderWidth: 1
+        borderWidth: 1,
+        fontFamily: 'sans-serif-medium'
     }
 })
 

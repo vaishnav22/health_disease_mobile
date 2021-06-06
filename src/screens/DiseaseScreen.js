@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {
     View,
     Text,
@@ -9,9 +9,10 @@ import {
     ScrollView,
     ActivityIndicator
 } from 'react-native';
-import {Font} from 'expo'
+// import {Font} from 'expo'
 import {Picker} from '@react-native-picker/picker'
 import { FontAwesome5 } from '@expo/vector-icons';
+import * as Font from 'expo-font'
 
 
 import FormInput from '../components/FormInput'
@@ -31,7 +32,7 @@ const DiseaseScreen = ({navigation}) => {
     const [symptom5, setSymptom5] = useState('')
     // const [symptom6, setSymptom6] = useState('')
 
-
+  
     const symptoms = ['Please select symptom','itching','skin_rash','nodal_skin_eruptions','continuous_sneezing','shivering','chills','joint_pain','stomach_pain','acidity','ulcers_on_tongue','muscle_wasting','vomiting','burning_micturition','spotting_ urination', 'fatigue', 'weight_gain', 'anxiety', 'cold_hands_and_feets', 'mood_swings', 'weight_loss', 'restlessness', 'lethargy','patches_in_throat', 'irregular_sugar_level', 'cough', 'high_fever', 'sunken_eyes', 'breathlessness', 'sweating', 'dehydration', 'indigestion', 'headache', 'yellowish_skin', 'dark_urine', 'nausea', 'loss_of_appetite', 'pain_behind_the_eyes', 'back_pain', 'constipation', 'abdominal_pain', 'diarrhoea', 'mild_fever', 'yellow_urine', 'yellowing_of_eyes','acute_liver_failure', 'fluid_overload', 'swelling_of_stomach', 'swelled_lymph_nodes', 'malaise', 'blurred_and_distorted_vision', 'phlegm', 'throat_irritation', 'redness_of_eyes', 'sinus_pressure', 'runny_nose', 'congestion', 'chest_pain', 'weakness_in_limbs', 'fast_heart_rate', 'pain_during_bowel_movements', 'pain_in_anal_region', 'bloody_stool', 'irritation_in_anus', 'neck_pain', 'dizziness', 'cramps','bruising', 'obesity', 'swollen_legs', 'swollen_blood_vessels', 'puffy_face_and_eyes', 'enlarged_thyroid', 'brittle_nails', 'swollen_extremeties', 'excessive_hunger', 'extra_marital_contacts', 'drying_and_tingling_lips', 'slurred_speech', 'knee_pain', 'hip_joint_pain', 'muscle_weakness', 'stiff_neck', 'swelling_joints', 'movement_stiffness', 'spinning_movements', 'loss_of_balance', 'unsteadiness', 'weakness_of_one_body_side','loss_of_smell', 'bladder_discomfort', 'foul_smell_of urine', 'continuous_feel_of_urine', 'passage_of_gases', 'internal_itching', 'toxic_look_(typhos)', 'depression', 'irritability', 'muscle_pain', 'altered_sensorium', 'red_spots_over_body', 'belly_pain', 'abnormal_menstruation', 'dischromic _patches', 'watering_from_eyes', 'increased_appetite', 'polyuria', 'family_history', 'mucoid_sputum', 'rusty_sputum', 'lack_of_concentration','visual_disturbances', 'receiving_blood_transfusion', 'receiving_unsterile_injections', 'coma', 'stomach_bleeding', 'distention_of_abdomen', 'history_of_alcohol_consumption', 'fluid_overload.1', 'blood_in_sputum', 'prominent_veins_on_calf', 'palpitations', 'painful_walking', 'pus_filled_pimples', 'blackheads', 'scurring', 'skin_peeling', 'silver_like_dusting', 'small_dents_in_nails', 'inflammatory_nails', 'blister', 'red_sore_around_nose', 'yellow_crust_ooze']
 
     return (
@@ -111,18 +112,14 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       padding: 20,
-      paddingTop: 50
-    },
-    logo: {
-      height: 120,
-      width: 120,
-      resizeMode: 'cover',
+      paddingTop: 50,
     },
     text: {
       fontSize: 24,
       marginTop: 20,
       color: '#051d5f',
-      textAlign: 'center'
+      textAlign: 'center',
+      fontFamily: 'sans-serif-medium'
     },
     navButton: {
       marginTop: 15,
@@ -139,7 +136,7 @@ const styles = StyleSheet.create({
       fontSize: 18,
       color: 'red',
       marginVertical: 15,
-      marginLeft: 13
+      marginLeft: 13,
     },
     picker: {
         width: 300,
@@ -147,7 +144,8 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: "black",
         borderWidth: 1,
-        fontSize: 18
+        fontSize: 18,
+        fontFamily: 'sans-serif-medium'
     },
     pickerView: {
       marginTop: 10,
@@ -156,18 +154,20 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         alignSelf: 'stretch',
         borderWidth: 1,
-        borderRadius: 10
+        borderRadius: 10,
+        fontFamily: 'sans-serif-medium'
     },
     predictionText : {
       fontSize: 24,
       marginTop: 16,
-      fontWeight: 'bold'
-
+      fontWeight: 'bold',
+      fontFamily: 'sans-serif-medium'
     },
     FollowingText: {
       fontSize: 22,
       marginTop: 15,
-      textAlign: 'center'
+      textAlign: 'center',
+      fontFamily: 'sans-serif-medium'
     }
 });
 export default DiseaseScreen;
