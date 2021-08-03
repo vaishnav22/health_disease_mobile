@@ -17,7 +17,6 @@ import {setNavigator} from './src/navigationRef'
 const mainFlowNavigator = createBottomTabNavigator({
   Disease: DiseaseScreen,
   News: NewsScreen,
-  Account: AccountScreen
 })
 
 const switchNavigator = createSwitchNavigator({
