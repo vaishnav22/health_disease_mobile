@@ -22,10 +22,11 @@ import SocialButton from '../components/SocialButton'
 import Spacer from '../components/Spacer'
 
 import { Context as AuthContext} from '../context/AuthContext'
+// const {signout} = useContext(AuthContext)
 
 const DiseaseScreen = ({navigation}) => {
 
-    const {state, predict} = useContext(AuthContext)
+    const {state, predict, signout} = useContext(AuthContext)
     const [symptom1, setSymptom1] = useState('')
     const [symptom2, setSymptom2] = useState('')
     const [symptom3, setSymptom3] = useState('')
@@ -98,6 +99,14 @@ const DiseaseScreen = ({navigation}) => {
           </View>
             {state.errorMessage ? <Text style={styles.error}>{state.errorMessage}</Text> : null}
           
+            <TouchableOpacity
+            style={styles.forgotButton} 
+            onPress={() => signout()}
+            >
+            <Text style={styles.navButtonText}>
+              Logout
+            </Text>
+          </TouchableOpacity>
 
         </ScrollView>
     )
@@ -169,6 +178,12 @@ const styles = StyleSheet.create({
       marginTop: 15,
       textAlign: 'center',
       fontFamily: 'sans-serif-medium'
-    }
+    },
+    navButtonText: {
+      fontSize: 18,
+      fontWeight: '500',
+      color: '#2e64e5',
+      marginTop: 40
+    },
 });
 export default DiseaseScreen;
