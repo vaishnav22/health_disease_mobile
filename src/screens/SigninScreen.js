@@ -71,12 +71,12 @@ const SigninScreen = ({navigation}) => {
                 
               /> */}
     
-              <SocialButton
+              {/* <SocialButton
                 buttonTitle="Sign In with Google"
                 btnType="google"
                 color="#de4d41"
                 backgroundColor="#f5e7ea"
-              />
+              /> */}
             </View>
           ) : null}
     
